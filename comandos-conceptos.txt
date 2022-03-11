@@ -1,0 +1,107 @@
+Usos de Git 
+    -Historial
+    -Almacenar código
+    -Trabajar en equipo
+    -Nos permite saber cuando se introdujo un error
+
+Flujo de Trabajo
+    -Trabajando desde el pc y queremos pasar a la etapa de staged, utilizamos el comando git add, para asi selecionar los archivos. Cuando agregamos
+     estos archivos a la etapa de staged lo que que estamos haciendo es poder verificar todos los cambios que estamos haciendo y eventualmente 
+     pasarlo a nuestro repositorio o retirarlos de esta etapa.
+     Luego cuando nosotros ejecutamos el comando git commit, los archivos lo dejamos en la nueva etapa llamada commit.
+     Los cambios que nosotros hallamos comprometidos, podemos pasarlo a un servidor que se encuentra en la nube por ejemplo:GitHub, Bitbucket, etc.
+
+
+Que es Git?
+ Es un sistema de contol de versiones, nos regista los cambios realizados en un archivo o conjunto de archivo.
+
+Head:
+ Head es en el commit donde nos encontramos.
+
+Comandos Basicos:
+
+//Este comando nos ayuda a saber como funciona git o algunos de sus comandos, podemos ser especificos ej: git help status//
+ git help
+
+//Añade el nombre de usuario//
+ git config --global user.name "nombre de usuario"
+
+//Añade el email//
+ git config --global user.email "Email"
+
+//Colorea la salida de Git//
+ git config --global color.ui true
+
+//Indicamos a git cual es nuestro editor de por defecto, la opcion de --wait es para que la terminal se quede esperando hasta que cerremos el editor 
+ git config --global core.editor "code --wait"
+
+//Nos abre el editor junto con la configuracion hecha hasta el momento//
+ git config --global -e
+
+//Enlista la config hecha hasta el momento//
+ git config --global --list 
+
+//IMPORTANTE!!! 
+ Persona A: se encuentra trabajando en Windows
+ Persona B: se encuentra trabajnaod en UNIX / LINUX
+  
+  En Windows cada vez que se realiza un salto de linea se va a agregar dos caracteres especiales para poder marcar estos saltos.
+  Estos caracteres especiales son: Carriage Return (CR) y Lines Feed (LF).
+ 
+  En lugar de las personas que estan trabajando con UNIX / Linux el unico caracter especial que se agrega es: Line Feed (LF)
+
+  Por eso es tenemos que agregar una configuracion de git y la propiedad de "core.autocrlf" tiene que tener el valor de TRUE, en caso de trabajar en WINDOWS.
+
+  Por el contrario los usuario de unix / linux, ellos no estan agregando el comando especial de CR, pero si debido al editor que esta usando o por si introdujo
+  aproposito el caracter CR, git debe ser capaz de eliminarlo y no dejarlo subir el caracter, para esto la propiedad "core.autocrlf" tiene que contener el valor de "input"
+
+  git config --global core.autocrlf "input si tenes linux o unix" o "true si tenes Windows".
+   
+
+//Marca el inicio de nuestro proyecto, monitorea todos los cambios//
+ git init
+
+//Nos marca el estado de nuestro proyecto//
+ git status 
+
+//Con este comando decidimos que archivos están listos agregar//
+ git add
+
+//Agrega un archivo especifico a la etapa de staged//
+ git add nombredelarchivo
+
+//Agrega todos archivos que tenemos en el proyecto//
+ git add -A 
+
+//Guardamos los cambios que hicimos, con un mensaje muy especifico para identificarlos//
+ git commit -m "mensaje"
+
+//Nos da una lista de todos nuestro commit con su respectiva información//
+ git log
+
+//Con este comandoo viajamos a través de nuestros commits o nuestras branchs//
+ git checkout
+
+//Si nosotros queremos sacar algun cambio que nosotros pasamos a la etapa de staged podemos utilizar el siguiente comando//
+ git restore --staged nombredelarchivo
+
+//Si queremos descartar los cambios, y recuperar el archivo utilizamos//
+ git restore nombredelarchivo
+
+//Es similar a checkout a diferencia que este elimina los commits//
+ git reset 
+
+// Este no toca nuestro "working area"(no se mete con nuestro codigo)//
+ git reset --soft
+
+//Este git reset borra el "staging area", sin tocar el "working area"//
+  git reset --mixed
+
+//Este git reset borra absolutamnete todo lo que hay en el commit,codigo,estado//
+ git reset --hard
+
+//Este comando nos muestra las ramas//
+ git branch
+
+//Git remote vincula nuestro proyecto local, con nuestro proyecto remoto//
+ git remote add origin
